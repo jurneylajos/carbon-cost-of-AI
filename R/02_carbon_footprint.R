@@ -35,7 +35,9 @@ theme_carbon <- function(base_size = 13) {
       axis.title       = element_text(colour = "grey30", size = base_size - 1),
       axis.text        = element_text(colour = "grey40"),
       panel.grid.minor = element_blank(),
-      panel.grid.major = element_line(colour = "grey92"),
+      panel.grid.major = element_line(colour = "grey85", linewidth = 0.4),
+      panel.background = element_rect(fill = "white", colour = NA),
+      plot.background  = element_rect(fill = "white", colour = NA),
       legend.position  = "bottom",
       legend.title     = element_text(face = "bold", size = base_size - 1),
       plot.margin      = margin(16, 16, 16, 16)
@@ -171,13 +173,15 @@ p4 <- ggplot() +
   ) +
   theme_void(base_size = 13) +
   theme(
-    plot.title    = element_text(face = "bold", size = 16,
-                                  margin = margin(b = 6)),
-    plot.subtitle = element_text(colour = "grey40", size = 12,
-                                  margin = margin(b = 10)),
-    plot.caption  = element_text(colour = "grey55", size = 9, hjust = 0),
-    legend.position = "right",
-    plot.margin   = margin(16, 16, 16, 16)
+    plot.title       = element_text(face = "bold", size = 16,
+                                    margin = margin(b = 6)),
+    plot.subtitle    = element_text(colour = "grey40", size = 12,
+                                    margin = margin(b = 10)),
+    plot.caption     = element_text(colour = "grey55", size = 9, hjust = 0),
+    legend.position  = "right",
+    plot.margin      = margin(16, 16, 16, 16),
+    plot.background  = element_rect(fill = "white", colour = NA),
+    panel.background = element_rect(fill = "white", colour = NA)
   )
 
 ggsave("outputs/plots/grid_carbon_intensity_map.png", p4,

@@ -33,7 +33,9 @@ theme_carbon <- function(base_size = 13) {
       axis.title       = element_text(colour = "grey30", size = base_size - 1),
       axis.text        = element_text(colour = "grey40"),
       panel.grid.minor = element_blank(),
-      panel.grid.major = element_line(colour = "grey92"),
+      panel.grid.major = element_line(colour = "grey85", linewidth = 0.4),
+      panel.background = element_rect(fill = "white", colour = NA),
+      plot.background  = element_rect(fill = "white", colour = NA),
       legend.position  = "bottom",
       legend.title     = element_text(face = "bold", size = base_size - 1),
       plot.margin      = margin(16, 16, 16, 16)
