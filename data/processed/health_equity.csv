@@ -1,0 +1,34 @@
+country,air_pollution_deaths_per_100k,year,co2_per_capita,population,income_group
+Chad,278,2022,0.152,18455319,Low income
+Niger,260,2022,0.126,25311978,Low income
+Burkina Faso,241,2022,0.291,22509038,Low income
+Mali,235,2022,0.304,23072641,Low income
+Mozambique,210,2022,0.285,32656242,Low income
+Ethiopia,195,2022,0.135,125384285,Low income
+Uganda,183,2022,0.13,47312718,Low income
+Tanzania,172,2022,0.304,64711822,Low income
+Nigeria,165,2022,0.589,223150906,Lower middle income
+Bangladesh,158,2022,0.603,169384891,Lower middle income
+India,134,2022,1.986,1425423209,Lower middle income
+Pakistan,129,2022,0.87,243700667,Lower middle income
+Ghana,118,2022,0.626,33149152,Lower middle income
+Kenya,107,2022,0.379,54252458,Lower middle income
+Morocco,98,2022,1.869,37329068,Lower middle income
+Philippines,93,2022,1.325,113964343,Lower middle income
+China,87,2022,8.218,1425179562,Upper middle income
+South Africa,82,2022,6.874,62378417,Upper middle income
+Indonesia,79,2022,2.719,278830527,Other
+Egypt,75,2022,2.219,112618252,Other
+Brazil,42,2022,2.283,210306411,Upper middle income
+Mexico,38,2022,3.528,128613116,Upper middle income
+Colombia,35,2022,1.729,51737944,Upper middle income
+Turkey,33,2022,5.095,87058469,Upper middle income
+Thailand,55,2022,3.8,71735321,Upper middle income
+United States,8.4,2022,14.802,341534041,High income
+Germany,9.2,2022,7.942,84086227,High income
+France,8.8,2022,4.456,66277412,High income
+United Kingdom,8.1,2022,4.563,68179315,High income
+Japan,10.3,2022,8.237,124997585,High income
+Australia,5.9,2022,14.659,26200987,High income
+Canada,7.2,2022,14.107,38821259,High income
+South Korea,12.1,2022,11.72,51782515,High income

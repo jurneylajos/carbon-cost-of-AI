@@ -1,0 +1,16 @@
+year,twh_low,twh_best,twh_high,type,source
+2014,58,58,58,historical,LBNL
+2015,60,60,60,historical,LBNL
+2016,60,60,60,historical,LBNL
+2017,65,65,65,historical,LBNL
+2018,76,76,76,historical,LBNL
+2019,95,95,95,historical,IEA
+2020,108,108,108,historical,IEA
+2021,120,120,120,historical,IEA
+2022,134,134,134,historical,IEA
+2023,176,176,176,historical,LBNL
+2024,183,183,183,historical,IEA
+2025,NA,220,NA,projected,IEA
+2026,NA,265,NA,projected,IEA
+2027,NA,315,NA,projected,IEA
+2028,325,450,580,projected,LBNL

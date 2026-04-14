@@ -1,0 +1,16 @@
+year,twh_low,twh_best,twh_high,type,source,total_twh,datacenter_share_pct,twh_equivalent
+2014,58,58,58,historical,LBNL,3988,1.4543630892678034,Pakistan annual demand = 180 TWh
+2015,60,60,60,historical,LBNL,3988,1.5045135406218655,Pakistan annual demand = 180 TWh
+2016,60,60,60,historical,LBNL,3988,1.5045135406218655,Pakistan annual demand = 180 TWh
+2017,65,65,65,historical,LBNL,3986,1.630707476166583,Pakistan annual demand = 180 TWh
+2018,76,76,76,historical,LBNL,4003,1.8985760679490382,Pakistan annual demand = 180 TWh
+2019,95,95,95,historical,IEA,3955,2.402022756005057,Pakistan annual demand = 180 TWh
+2020,108,108,108,historical,IEA,3802,2.8406102051551816,Pakistan annual demand = 180 TWh
+2021,120,120,120,historical,IEA,3930,3.0534351145038165,Pakistan annual demand = 180 TWh
+2022,134,134,134,historical,IEA,4042,3.3151904997525974,Pakistan annual demand = 180 TWh
+2023,176,176,176,historical,LBNL,4003,4.396702473145141,Pakistan annual demand = 180 TWh
+2024,183,183,183,historical,IEA,4097,4.46668293873566,Pakistan annual demand = 180 TWh
+2025,NA,220,NA,projected,IEA,NA,NA,Pakistan annual demand = 180 TWh
+2026,NA,265,NA,projected,IEA,NA,NA,Pakistan annual demand = 180 TWh
+2027,NA,315,NA,projected,IEA,NA,NA,Pakistan annual demand = 180 TWh
+2028,325,450,580,projected,LBNL,NA,NA,Pakistan annual demand = 180 TWh
