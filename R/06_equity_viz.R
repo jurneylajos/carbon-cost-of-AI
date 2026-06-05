@@ -78,6 +78,22 @@ plot_df <- health_df %>%
   filter(income_group != "Other", !is.na(co2_per_capita),
          !is.na(air_pollution_deaths_per_100k), co2_per_capita > 0)
 
+# Spearman correlation: CO2 per capita (log) vs air pollution mortality
+cor_result <- cor.test(
+  log10(plot_df$co2_per_capita),
+  plot_df$air_pollution_deaths_per_100k,
+  method = "spearman"
+)
+cor_label <- sprintf(
+  "Spearman ρ = %.2f\np %s  (n = %d)",
+  cor_result$estimate,
+  ifelse(cor_result$p.value < 0.001, "< 0.001",
+         sprintf("= %.3f", cor_result$p.value)),
+  nrow(plot_df)
+)
+message(sprintf("  Spearman rho = %.3f, p = %.4f (n = %d)",
+                cor_result$estimate, cor_result$p.value, nrow(plot_df)))
+
 # ============================================================
 # PLOT 11 — THE CENTREPIECE: equity scatter
 # ============================================================
@@ -156,6 +172,17 @@ p11 <- ggplot(plot_df,
   guides(
     colour = guide_legend(order = 1, override.aes = list(size = 4)),
     size   = guide_legend(order = 2)
+  ) +
+  annotate(
+    "label",
+    x = Inf, y = Inf,
+    label    = cor_label,
+    hjust    = 1.08, vjust = 1.4,
+    size     = 4.2,
+    linewidth  = 0.3,
+    fill     = alpha("white", 0.88),
+    colour   = "grey25",
+    fontface = "bold"
   ) +
   labs(
     title    = "Who Bears the Climate Health Burden?",
