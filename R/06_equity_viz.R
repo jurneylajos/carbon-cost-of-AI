@@ -141,7 +141,7 @@ p11 <- ggplot(plot_df,
   ) +
   scale_y_continuous(
     labels = label_comma(),
-    name   = "Air Pollution Deaths per 100,000 population (2022)"
+    name   = "Air Pollution Deaths per 100,000 population (age-standardised, ~2019)"
   ) +
   scale_colour_manual(values = pal_income, name = "Income group",
                       drop = TRUE) +
@@ -160,14 +160,15 @@ p11 <- ggplot(plot_df,
   labs(
     title    = "Who Bears the Climate Health Burden?",
     subtitle = paste0(
-      "Countries contributing least to AI-era emissions face the greatest ",
-      "health risks from climate change"
+      "Countries with the lowest per-capita CO2 emissions bear the greatest ",
+      "air pollution mortality — CO2 data is economy-wide; AI compute is the ",
+      "framing context, not the measured cause"
     ),
     caption  = paste0(
-      "Sources: IHME/Our World in Data (air pollution mortality); ",
-      "Our World in Data CO2 dataset (emissions per capita). Both 2022.\n",
-      "Point size proportional to population. Dashed lines at median values. ",
-      "Loess smoothers per income group."
+      "Sources: State of Global Air / Health Effects Institute (ambient PM2.5 mortality, 2015); ",
+      "Our World in Data CO2 dataset (CO2 per capita, most recent year ≤ 2022).\n",
+      "PM2.5 = outdoor particulate matter, more directly tied to fossil fuel combustion than combined indoor+outdoor measures. ",
+      "Shaded bands show loess smoothers per income group (95% CI)."
     )
   ) +
   theme_carbon(base_size = 14) +
@@ -263,7 +264,8 @@ p12 <- ggplot(long_summary,
     x        = "Income Group",
     y        = "Normalised Score (0-100)",
     caption  = paste0(
-      "Sources: Our World in Data CO2 dataset; IHME Global Burden of Disease.\n",
+      "Sources: State of Global Air / HEI (ambient PM2.5 mortality, 2015); ",
+      "Our World in Data CO2 dataset (CO2 per capita, most recent year ≤ 2022).\n",
       "Values show group means. White labels show actual CO2 per capita (tonnes)."
     )
   ) +
@@ -287,9 +289,78 @@ message(sprintf(
   "  Low-income countries bear %.1f deaths/100k (%.1fx high-income burden)",
   lo_mort, lo_mort / hi_mort))
 
+# ============================================================
+# PLOT 13 — Small multiples: equity scatter 2015 vs most recent
+# ============================================================
+multiyear_path <- "data/processed/health_equity_multiyear.csv"
+
+if (file.exists(multiyear_path)) {
+  message("Generating Plot 13: equity_scatter_multiyear.png")
+
+  health_multi <- read_csv(multiyear_path, show_col_types = FALSE) %>%
+    filter(income_group != "Other", !is.na(co2_per_capita),
+           !is.na(air_pollution_deaths_per_100k), co2_per_capita > 0) %>%
+    mutate(
+      income_group = factor(income_group,
+                            levels = c("High income", "Upper middle income",
+                                       "Lower middle income", "Low income")),
+      year_label   = factor(year_label, levels = sort(unique(year_label)))
+    )
+
+  if (nrow(health_multi) > 10) {
+    p13 <- ggplot(health_multi,
+                  aes(x = co2_per_capita, y = air_pollution_deaths_per_100k)) +
+      geom_smooth(aes(colour = income_group, fill = income_group),
+                  method = "loess", span = 0.9, se = TRUE, alpha = 0.12,
+                  linewidth = 0.8, show.legend = FALSE) +
+      geom_point(aes(colour = income_group, size = population / 1e6),
+                 alpha = 0.65, stroke = 0.3) +
+      scale_x_log10(
+        labels = label_number(suffix = " t", accuracy = 0.1),
+        name   = "CO2 Emissions per Capita (tonnes, log scale)"
+      ) +
+      scale_y_continuous(
+        labels = label_comma(),
+        name   = "Air Pollution Deaths per 100,000"
+      ) +
+      scale_colour_manual(values = pal_income, name = "Income group", drop = TRUE) +
+      scale_fill_manual(values   = pal_income, drop = TRUE, guide = "none") +
+      scale_size_continuous(range = c(1.5, 10), name = "Population (millions)",
+                            breaks = c(10, 100, 500, 1000),
+                            labels = label_comma()) +
+      facet_wrap(~year_label, ncol = 2) +
+      labs(
+        title    = "The Emissions–Health Burden Gap: 2000 vs 2015",
+        subtitle = paste0("Persistent pattern across a 15-year window indicates structural, ",
+                          "not transitory, inequality"),
+        caption  = paste0(
+          "Sources: State of Global Air / HEI (ambient PM2.5 mortality, 2000 and 2015); ",
+          "Our World in Data CO2 dataset (CO2 per capita, matching years).\n",
+          "CO2 data is economy-wide, not AI-specific. ",
+          "Shaded bands show loess smoothers per income group (95% CI)."
+        )
+      ) +
+      theme_carbon(base_size = 13) +
+      theme(
+        strip.text       = element_text(face = "bold", size = 13),
+        legend.position  = "bottom",
+        legend.box       = "horizontal"
+      )
+
+    ggsave("outputs/plots/equity_scatter_multiyear.png", p13,
+           width = 3000 / 150, height = 1400 / 150, dpi = 150)
+    message("Saved: outputs/plots/equity_scatter_multiyear.png")
+  } else {
+    message("  Skipping Plot 13 — insufficient multi-year data.")
+  }
+} else {
+  message("  Skipping Plot 13 — health_equity_multiyear.csv not found (run 05_health_burden.R with internet access).")
+}
+
 # --- Summary -----------------------------------------------------------------
 message("\n=== 06_equity_viz.R complete ===")
 message("Outputs saved:")
-message("  outputs/plots/equity_scatter.png  (CENTREPIECE)")
+message("  outputs/plots/equity_scatter.png         (CENTREPIECE)")
 message("  outputs/plots/income_group_summary.png")
-message("\n=== ALL SCRIPTS COMPLETE — 12 plots generated ===")
+message("  outputs/plots/equity_scatter_multiyear.png (if multi-year data available)")
+message("\n=== ALL SCRIPTS COMPLETE ===")
