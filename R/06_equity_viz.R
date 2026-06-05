@@ -129,17 +129,6 @@ p11 <- ggplot(plot_df,
     label.size    = 0.25,
     fill          = alpha("white", 0.85)
   ) +
-  # Quadrant annotations
-  annotate("text",
-           x = x_low, y = y_high,
-           label = "Low emissions,\nHigh health burden",
-           size = 5.0, colour = "#d73027", fontface = "italic",
-           hjust = 0) +
-  annotate("text",
-           x = x_high, y = y_low,
-           label = "High emissions,\nProtected by wealth",
-           size = 5.0, colour = "#2166ac", fontface = "italic",
-           hjust = 0.5) +
   # Reference lines at medians
   geom_vline(xintercept = 10^x_mid, linetype = "dashed",
              colour = "grey60", linewidth = 0.6) +
