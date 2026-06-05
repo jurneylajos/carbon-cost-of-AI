@@ -306,8 +306,7 @@ p10 <- ggplot(top20, aes(x = air_pollution_deaths_per_100k,
     x        = "Deaths per 100,000 population",
     y        = NULL,
     caption  = paste0(
-      "Source: State of Global Air / Health Effects Institute via Our World in Data. ",
-      "Ambient PM2.5 (outdoor) mortality, 2015.\n",
+      "Source: IHME Global Burden of Disease via Our World in Data (air pollution mortality, 2019).\n",
       "Income group classifications from World Bank (2022)."
     )
   ) +
