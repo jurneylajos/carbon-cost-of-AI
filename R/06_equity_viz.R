@@ -117,11 +117,13 @@ p11 <- ggplot(plot_df,
   geom_label_repel(
     data          = label_df,
     aes(label     = country, colour = income_group),
-    size          = 3.2,
+    size          = 4.2,
     fontface      = "bold",
-    box.padding   = 0.55,
-    point.padding = 0.4,
-    max.overlaps  = 25,
+    box.padding   = 1.0,
+    point.padding = 0.8,
+    force         = 3,
+    force_pull    = 0.5,
+    max.overlaps  = Inf,
     seed          = 2024,
     show.legend   = FALSE,
     label.size    = 0.25,
@@ -131,12 +133,12 @@ p11 <- ggplot(plot_df,
   annotate("text",
            x = x_low, y = y_high,
            label = "Low emissions,\nHigh health burden",
-           size = 3.8, colour = "#d73027", fontface = "italic",
+           size = 5.0, colour = "#d73027", fontface = "italic",
            hjust = 0) +
   annotate("text",
            x = x_high, y = y_low,
            label = "High emissions,\nProtected by wealth",
-           size = 3.8, colour = "#2166ac", fontface = "italic",
+           size = 5.0, colour = "#2166ac", fontface = "italic",
            hjust = 0.5) +
   # Reference lines at medians
   geom_vline(xintercept = 10^x_mid, linetype = "dashed",
@@ -150,7 +152,7 @@ p11 <- ggplot(plot_df,
   ) +
   scale_y_continuous(
     labels = label_comma(),
-    name   = "Air Pollution Deaths per 100,000 population"
+    name   = "Air Pollution Deaths per 100,000 population (2022)"
   ) +
   scale_colour_manual(values = pal_income, name = "Income group",
                       drop = TRUE) +
@@ -174,23 +176,29 @@ p11 <- ggplot(plot_df,
     ),
     caption  = paste0(
       "Sources: IHME/Our World in Data (air pollution mortality); ",
-      "Our World in Data CO2 dataset (emissions per capita).\n",
+      "Our World in Data CO2 dataset (emissions per capita). Both 2022.\n",
       "Point size proportional to population. Dashed lines at median values. ",
       "Loess smoothers per income group."
     )
   ) +
-  theme_carbon() +
+  theme_carbon(base_size = 14) +
   theme(
-    legend.box      = "horizontal",
-    legend.position = "bottom",
-    plot.title      = element_text(face = "bold", size = 17,
-                                   margin = margin(b = 6)),
-    plot.subtitle   = element_text(colour = "grey40", size = 12,
-                                   margin = margin(b = 10))
+    legend.box       = "horizontal",
+    legend.position  = "bottom",
+    legend.text      = element_text(size = 13),
+    legend.title     = element_text(face = "bold", size = 14),
+    legend.key.size  = unit(0.55, "cm"),
+    legend.spacing.x = unit(0.4, "cm"),
+    legend.margin    = margin(t = 8),
+    plot.title       = element_text(face = "bold", size = 20,
+                                    margin = margin(b = 6)),
+    plot.subtitle    = element_text(colour = "grey40", size = 14,
+                                    margin = margin(b = 10)),
+    plot.margin      = margin(20, 24, 20, 20)
   )
 
 ggsave("outputs/plots/equity_scatter.png", p11,
-       width = 1600 / 150, height = 1000 / 150, dpi = 150)
+       width = 3000 / 150, height = 1800 / 150, dpi = 150)
 message("Saved: outputs/plots/equity_scatter.png")
 
 # ============================================================
