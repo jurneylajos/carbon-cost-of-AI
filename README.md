@@ -23,7 +23,7 @@ Carbon emissions do not stay where they are produced. They accumulate in the atm
 | **EPA eGRID 2022** | CO2 emission rates by US electricity subregion (lbs CO2/MWh) | [epa.gov/egrid](https://www.epa.gov/egrid/download-data) | Hardcoded from summary tables |
 | **Our World in Data CO2** | Country-level CO2 emissions, per capita emissions, cumulative emissions, population | [github.com/owid/co2-data](https://github.com/owid/co2-data) | Auto-downloaded via URL |
 | **NOAA Climate at a Glance** | Global land+ocean temperature anomaly 1850–2024 vs 1901–2000 baseline | [ncei.noaa.gov/access/monitoring/climate-at-a-glance](https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/global/time-series/) | Auto-downloaded via URL |
-| **State of Global Air / HEI** | Country-level ambient PM2.5 mortality (outdoor only, 175 countries, 1990–2015) | [github.com/owid/owid-datasets](https://github.com/owid/owid-datasets) | Auto-downloaded via URL (hardcoded fallback: 33-country IHME estimates ~2022) |
+| **OWID Air Pollution Deaths** | Country-level mortality from indoor and outdoor air pollution (IHME GBD 2019) | [github.com/owid/owid-datasets](https://github.com/owid/owid-datasets) | Auto-downloaded via URL (hardcoded fallback: 33-country IHME GBD 2019 estimates) |
 | **EIA Electric Power Monthly** | US total electricity consumption by year 2014–2024 | [eia.gov/electricity/monthly](https://www.eia.gov/electricity/monthly/) | Manual (included in `data/manual/`) |
 
 ---
@@ -73,7 +73,7 @@ carbon-cost-of-ai/
 | Same 1 TWh in Virginia vs Pacific NW | **~0.24 Mmt more CO2** |
 | US data centre water use (2023) | **17 billion gallons ≈ 26 million Olympic pools** |
 | Global temperature anomaly (2023) | **+1.17°C** above 1901–2000 average |
-| Air pollution mortality gap | Low-income countries bear substantially higher **ambient PM2.5 death rates** than high-income countries despite emitting a fraction of the CO2 per capita (2015 data) |
+| Air pollution mortality gap | Low-income countries bear **25× higher** air pollution mortality rates than high-income countries despite emitting a fraction of the CO2 per capita (IHME GBD 2019) |
 
 ---
 
@@ -83,7 +83,7 @@ carbon-cost-of-ai/
 
 ![Equity Scatter](outputs/plots/equity_scatter.png)
 
-*Ambient PM2.5 mortality (2015) vs CO2 per capita (most recent year ≤ 2022). Shaded bands show loess smoothers per income group (95% CI). Countries in the top-left quadrant emit little CO2 but face the highest outdoor air pollution mortality. Countries in the bottom-right emit heavily but are shielded by wealth and healthcare capacity.*
+*Air pollution mortality (IHME GBD 2019) vs CO2 per capita (2022). Shaded bands show loess smoothers per income group (95% CI). Countries in the top-left quadrant emit little CO2 per capita but face the highest air pollution mortality. Countries in the bottom-right emit heavily but are shielded by wealth and healthcare capacity.*
 
 ---
 
@@ -115,7 +115,7 @@ carbon-cost-of-ai/
 
 **Air pollution mortality ≠ climate change mortality exclusively.** The air pollution burden shown includes both fossil fuel combustion (which overlaps with climate emissions) and indoor cooking/heating pollution. Isolating the climate-attributable component requires modelling that is beyond this descriptive scope.
 
-**Sample scope (33 countries).** The equity analysis covers 33 countries determined by data availability — countries with both IHME air pollution estimates and World Bank income classifications present in OWID sources. This convenience sample spans all four income tiers but is not a random or exhaustive global sample. Patterns are illustrative of the cross-income relationship, not a definitive global prevalence estimate.
+**Sample scope (33 countries).** The equity analysis covers 33 countries for which IHME GBD 2019 air pollution mortality estimates and World Bank income classifications were available. This convenience sample spans all four income tiers but is not a random or exhaustive global sample. Patterns are illustrative of the cross-income relationship, not a definitive global prevalence estimate.
 
 **Future work:**
 - Causal identification: instrumental variable or synthetic control approach linking national emissions trajectories to health outcomes

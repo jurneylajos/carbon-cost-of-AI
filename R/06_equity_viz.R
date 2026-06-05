@@ -141,7 +141,7 @@ p11 <- ggplot(plot_df,
   ) +
   scale_y_continuous(
     labels = label_comma(),
-    name   = "Air Pollution Deaths per 100,000 population (age-standardised, ~2019)"
+    name   = "Air Pollution Deaths per 100,000 population (2019)"
   ) +
   scale_colour_manual(values = pal_income, name = "Income group",
                       drop = TRUE) +
@@ -165,9 +165,8 @@ p11 <- ggplot(plot_df,
       "framing context, not the measured cause"
     ),
     caption  = paste0(
-      "Sources: State of Global Air / Health Effects Institute (ambient PM2.5 mortality, 2015); ",
-      "Our World in Data CO2 dataset (CO2 per capita, most recent year ≤ 2022).\n",
-      "PM2.5 = outdoor particulate matter, more directly tied to fossil fuel combustion than combined indoor+outdoor measures. ",
+      "Sources: IHME Global Burden of Disease via Our World in Data (air pollution mortality, 2019); ",
+      "Our World in Data CO2 dataset (CO2 per capita, 2022).\n",
       "Shaded bands show loess smoothers per income group (95% CI)."
     )
   ) +
@@ -264,8 +263,8 @@ p12 <- ggplot(long_summary,
     x        = "Income Group",
     y        = "Normalised Score (0-100)",
     caption  = paste0(
-      "Sources: State of Global Air / HEI (ambient PM2.5 mortality, 2015); ",
-      "Our World in Data CO2 dataset (CO2 per capita, most recent year ≤ 2022).\n",
+      "Sources: IHME Global Burden of Disease via Our World in Data (air pollution mortality, 2019); ",
+      "Our World in Data CO2 dataset (CO2 per capita, 2022).\n",
       "Values show group means. White labels show actual CO2 per capita (tonnes)."
     )
   ) +
